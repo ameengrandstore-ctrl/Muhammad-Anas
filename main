@@ -1,0 +1,30 @@
+movies = [
+    {"name":"Avengers","genre":"Action","language":"English"},
+    {"name":"John Wick","genre":"Action","language":"English"},
+    {"name":"3 Idiots","genre":"Comedy","language":"Hindi"},
+    {"name":"Dangal","genre":"Drama","language":"Hindi"},
+    {"name":"Frozen","genre":"Animation","language":"English"},
+    {"name":"Kung Fu Panda","genre":"Animation","language":"English"},
+    {"name":"Parasite","genre":"Thriller","language":"Korean"},
+    {"name":"Train to Busan","genre":"Action","language":"Korean"}
+]
+
+print("===== Movie Recommendation System =====")
+genre=input("Enter your favorite genre: ")
+language=input("Enter your favorite language: ")
+recommendations=[]
+for movie in movies:
+    score=0
+    if movie["genre"].lower()==genre.lower():
+        score+=1
+    if movie["language"].lower()==language.lower():
+        score+=1
+    if score>0:
+        recommendations.append((movie["name"],score))
+recommendations.sort(key=lambda x:x[1], reverse=True)
+print("\nRecommended Movies")
+if not recommendations:
+    print("Sorry! No recommendation found.")
+else:
+    for movie,score in recommendations:
+        print(f"{movie} - Similarity Score: {score}")
